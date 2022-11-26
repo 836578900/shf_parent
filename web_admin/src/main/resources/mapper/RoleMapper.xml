@@ -10,6 +10,21 @@
         select * from acl_role where is_deleted=0
     </select>
 
+    <select id="findPage" resultType="role">
+        select * from acl_role
+        <where>
+            <if test="roleName!=null and roleName!=''">
+                role_name like concat('%',#{roleName},'%')
+            </if>
+            and is_deleted=0
+        </where>
+
+    </select>
+
+    <select id="getById" resultType="role">
+        select * from acl_role where is_deleted=0 and id =#{id}
+    </select>
+
     <insert id="insert">
         insert into acl_role (
             role_name,
@@ -21,4 +36,17 @@
             #{description}
         )
     </insert>
+
+    <update id="update">
+        update acl_role set
+            role_name=#{roleName},role_code=#{roleCode},description=#{description}
+        where id=#{id}
+    </update>
+
+    <update id="delete">
+        update acl_role set
+        is_deleted = 1
+        where
+        id = #{id}
+    </update>
 </mapper>
