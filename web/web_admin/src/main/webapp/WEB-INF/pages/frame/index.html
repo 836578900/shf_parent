@@ -69,6 +69,26 @@
                                 </li>
                             </ul>
                         </li>
+                        <!--此处class值可以去掉，去掉是刷新折叠权限管理-->
+                        <li class="active">
+                            <a href="#">
+                                <i class="fa fa-home"></i>
+                                <span class="nav-label">二手房管理</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <!-- collapse in和 aria-expanded="true"可以去掉，去掉是刷新折叠权限管理-->
+                            <ul class="nav nav-second-level  collapse in" aria-expanded="true">
+                                <li>
+                                    <a class="J_menuItem" th:href="@{/dict}" data-index="0">数据字典</a>
+                                </li>
+                                <li>
+                                    <a class="J_menuItem" th:href="@{/community}">小区管理</a>
+                                </li>
+                                <li>
+                                    <a class="J_menuItem" th:href="@{/house}">房源管理</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </nav>

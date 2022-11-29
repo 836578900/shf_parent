@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--名称空间设置成RoleDao的全类名-->
+<mapper namespace="com.tong.shf.mapper.DictMapper">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        select id,parent_id,name,dict_code,create_time,update_time,is_deleted
+    </sql>
+    
+    <select id="findZnodesByParentId" resultType="dict">
+        <include refid="columns">
+        </include>
+        from hse_dict
+        where is_deleted = 0 and  parent_id = #{parentId}
+    </select>
+    <select id="countParentId" resultType="integer">
+        select count(*) from hse_dict
+        where parent_id = #{id}
+    </select>
+    <select id="findByDictCode" resultType="dict">
+        <include refid="columns">
+        </include>
+        from hse_dict
+        where is_deleted = 0 and  dict_code = #{dictCode}
+    </select>
+    <select id="getById" resultType="dict">
+        <include refid="columns">
+        </include>
+        from hse_dict
+        where is_deleted = 0 and  id = #{id}
+    </select>
+</mapper>
