@@ -12,6 +12,7 @@ import com.tong.shf.util.CastUtil;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -58,5 +59,13 @@ public class CommunityServiceImpl extends BaseServiceImpl<Community> implements 
     @Override
     public List<Community> findAll() {
         return communityMapper.findAll();
+    }
+
+    @Override
+    public Community getById(Serializable id) {
+        Community community = communityMapper.getById(id);
+        community.setAreaName(dictMapper.getById(community.getAreaId()).getName());
+        community.setPlateName(dictMapper.getById(community.getPlateId()).getName());
+        return community;
     }
 }

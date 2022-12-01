@@ -82,10 +82,10 @@ jQuery(function() {
 
         chunked: true,
         // server: 'http://webuploader.duapp.com/server/fileupload.php',
-        server: 'http://2betop.net/fileupload.php',
+        server: BASE_UPLOAD,
         fileNumLimit: 300,
-        fileSizeLimit: 5 * 1024 * 1024,    // 200 M
-        fileSingleSizeLimit: 1 * 1024 * 1024    // 50 M
+        fileSizeLimit: 500 * 1024 * 1024,    // 200 M
+        fileSingleSizeLimit: 100 * 1024 * 1024    // 50 M
     });
 
     // 添加“添加文件”的按钮，

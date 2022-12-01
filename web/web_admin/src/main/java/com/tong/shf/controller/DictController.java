@@ -44,5 +44,6 @@ public class DictController {
     public Result findListByParentId(@PathVariable Integer areaId){
         List<Dict> dictList = dictService.findListByParentId(areaId);
         return Result.ok(dictList);
+
     }
 }

@@ -54,6 +54,9 @@
             <if test="phone!=null and phone!=''">
                 phone=#{phone},
             </if>
+            <if test="headUrl!=null and headUrl != ''">
+                head_url = #{headUrl}
+            </if>
         </set>
         where id=#{id}
     </update>

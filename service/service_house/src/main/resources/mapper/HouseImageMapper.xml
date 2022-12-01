@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--名称空间设置成RoleDao的全类名-->
+<mapper namespace="com.tong.shf.mapper.HouseImageMapper">
+    <sql id="columns">
+        select id,house_id,image_name,image_url,type,create_time,update_time,is_deleted
+    </sql>
+
+
+    <select id="findListByHouseIdAndType" resultType="HouseImage">
+        <include refid="columns">
+        </include>
+        from hse_house_image
+        where is_deleted=0 and house_id=#{houseId} and type=#{type}
+    </select>
+
+    <insert id="insert">
+        insert into hse_house_image(house_id,image_name,image_url,type)
+        values(#{houseId},#{imageName},#{imageUrl},#{type})
+    </insert>
+
+    <select id="getById" resultType="HouseImage">
+        select * from hse_house_image where id =#{id} and is_deleted=0
+    </select>
+
+    <update id="delete">
+        update hse_house_image set is_deleted = 1 where id = #{id}
+    </update>
+</mapper>
