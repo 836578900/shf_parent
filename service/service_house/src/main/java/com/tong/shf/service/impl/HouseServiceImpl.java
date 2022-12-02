@@ -1,14 +1,19 @@
 package com.tong.shf.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tong.shf.entity.House;
 import com.tong.shf.mapper.BaseMapper;
 import com.tong.shf.mapper.DictMapper;
 import com.tong.shf.mapper.HouseMapper;
 import com.tong.shf.service.HouseService;
+import com.tong.shf.vo.HouseQueryVo;
+import com.tong.shf.vo.HouseVo;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * title:
@@ -36,6 +41,19 @@ public class HouseServiceImpl extends BaseServiceImpl<House> implements HouseSer
         house.setStatus(status);
         house.setId(houseId);
         houseMapper.publish(house);
+    }
+
+    @Override
+    public PageInfo<HouseVo> findListPage(int pageNum, int pageSize, HouseQueryVo houseQueryVo) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<HouseVo> page = houseMapper.findListPage(houseQueryVo);
+        for (HouseVo houseVo : page) {
+            houseVo.setHouseTypeName(dictMapper.getById(houseVo.getHouseTypeId()).getName());
+            houseVo.setDirectionName(dictMapper.getById(houseVo.getDirectionId()).getName());
+            houseVo.setFloorName(dictMapper.getById(houseVo.getFloorId()).getName());
+        }
+
+        return new PageInfo<>(page,3);
     }
 
     @Override

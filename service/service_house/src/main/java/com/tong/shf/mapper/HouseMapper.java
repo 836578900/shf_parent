@@ -1,6 +1,10 @@
 package com.tong.shf.mapper;
 
 import com.tong.shf.entity.House;
+import com.tong.shf.vo.HouseQueryVo;
+import com.tong.shf.vo.HouseVo;
+
+import java.util.List;
 
 /**
  * title:
@@ -12,4 +16,5 @@ import com.tong.shf.entity.House;
  */
 public interface HouseMapper extends BaseMapper<House> {
     void publish(House house);
+    List<HouseVo> findListPage(HouseQueryVo houseQueryVo);
 }

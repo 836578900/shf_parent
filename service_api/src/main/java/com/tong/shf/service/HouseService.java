@@ -1,6 +1,9 @@
 package com.tong.shf.service;
 
+import com.github.pagehelper.PageInfo;
 import com.tong.shf.entity.House;
+import com.tong.shf.vo.HouseQueryVo;
+import com.tong.shf.vo.HouseVo;
 
 /**
  * title:
@@ -12,4 +15,5 @@ import com.tong.shf.entity.House;
  */
 public interface HouseService extends BaseService<House> {
     void publish(long houseId,Integer status);
+    PageInfo<HouseVo> findListPage(int pageNum, int pageSize, HouseQueryVo houseQueryVo);
 }

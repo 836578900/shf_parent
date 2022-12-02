@@ -15,6 +15,7 @@
 
     <modules>
         <module>web_admin</module>
+        <module>web_front</module>
     </modules>
 
     <dependencies>
