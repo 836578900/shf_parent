@@ -52,4 +52,9 @@ public class DictServiceImpl implements DictService {
     public List<Dict> findListByParentId(long id) {
         return dictMapper.findZnodesByParentId(id);
     }
+
+    @Override
+    public Dict getById(long id) {
+        return dictMapper.getById(id);
+    }
 }

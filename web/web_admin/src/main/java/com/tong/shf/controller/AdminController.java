@@ -2,7 +2,11 @@ package com.tong.shf.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.tong.shf.entity.Admin;
+import com.tong.shf.entity.AdminRole;
+import com.tong.shf.entity.Role;
+import com.tong.shf.service.AdminRoleService;
 import com.tong.shf.service.AdminService;
+import com.tong.shf.service.RoleService;
 import com.tong.shf.util.QiniuUtil;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -31,6 +36,10 @@ import java.util.UUID;
 public class AdminController extends BaseController {
     @DubboReference
     private AdminService adminService;
+    @DubboReference
+    private RoleService roleService;
+    @DubboReference
+    private AdminRoleService adminRoleService;
 
     @RequestMapping
     public String findPage(HttpServletRequest request, Map map){
@@ -85,6 +94,22 @@ public class AdminController extends BaseController {
         admin.setId(adminId);
         admin.setHeadUrl("http://rm5df0euk.hn-bkt.clouddn.com/"+filename);
         adminService.update(admin);
+        return "common/success";
+    }
+
+    @RequestMapping(value = "/assignShow/{adminId}")
+    public String assignShow(@PathVariable Long adminId,Map map){
+        Map<String, List<Role>> roleByAdminId = roleService.findRoleByAdminId(adminId);
+        map.putAll(roleByAdminId);
+        map.put("adminId",adminId);
+        return "admin/assignShow";
+    }
+    
+    @RequestMapping(value = "/assignRole")
+    public String assignRole(long adminId,Long[] roleIds){
+        //roleIds是一个前台传过来的字符串，格式是[id,id,id,]，springmvc会自动给转化为一个long型数组，但是注意最后一个值为null值
+
+        adminRoleService.insertAdminRole(adminId,roleIds);
         return "common/success";
     }
 

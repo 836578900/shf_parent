@@ -17,4 +17,5 @@ public interface DictService{
     List<Map<String,Object>> findZnodes(long id);
     List<Dict> findListByDictCode(String dictCode);
     List<Dict> findListByParentId(long id);
+    Dict getById(long id);
 }

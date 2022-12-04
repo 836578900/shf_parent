@@ -26,4 +26,11 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+    <!--配置拦截器的拦截路径-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/auth/**"/>
+            <bean class="com.tong.shf.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

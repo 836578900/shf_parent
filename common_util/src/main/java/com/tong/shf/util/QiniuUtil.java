@@ -21,9 +21,9 @@ import java.io.InputStream;
  */
 public class QiniuUtil {
 
-    public  static String accessKey = "你自己的密钥";
-    public  static String secretKey = "你自己的密钥";
-    public  static String bucket = "存储空间名称";
+    public  static String accessKey = "GdxSTjzDNzs1OjDWq1onqlNSM2KXBc5aZBgiVPSH";
+    public  static String secretKey = "ZYqc_cNj8JA4ONOWSF9UQnd6dnHpvhCTKgJ06k1M";
+    public  static String bucket = "shf990328";
 
     public static void upload2Qiniu(String filePath,String fileName){
         //构造一个带指定Region对象的配置类
