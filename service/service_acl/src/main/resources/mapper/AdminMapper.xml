@@ -65,4 +65,8 @@
         update acl_admin set is_deleted=1 where id=#{id}
     </update>
 
+    <select id="getByUsername" resultType="Admin">
+        select * from acl_admin where username=#{username} and is_deleted = 0
+    </select>
+
 </mapper>

@@ -4,15 +4,12 @@ package com.tong.shf.controller;
 import com.github.pagehelper.PageInfo;
 import com.tong.shf.entity.Community;
 import com.tong.shf.entity.Dict;
-import com.tong.shf.result.Result;
 import com.tong.shf.service.CommunityService;
 import com.tong.shf.service.DictService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

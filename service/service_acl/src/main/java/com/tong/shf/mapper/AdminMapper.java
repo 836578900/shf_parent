@@ -11,5 +11,5 @@ import com.tong.shf.entity.Admin;
  * @create 2022-11-26 19:09
  */
 public interface AdminMapper extends BaseMapper<Admin> {
-
+    Admin getByUsername(String username);
 }

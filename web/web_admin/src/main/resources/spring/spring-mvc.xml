@@ -8,7 +8,7 @@
     <import resource="spring-registry.xml"/>
 
     <!--controller包的注解扫描-->
-    <context:component-scan base-package="com.tong.shf.controller"/>
+    <context:component-scan base-package="com.tong.shf"/>
     <!--Thymeleaf的视图解析器:复制粘贴-->
     <!--配置视图解析器 ：Thymeleaf  SpringBoot之后是不需要自己配置-->
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver" id="viewResolver">
@@ -34,7 +34,7 @@
         </property>
     </bean>
     <!--暂时先这么写：首页访问-->
-    <mvc:view-controller path="index.html" view-name="frame/index"/>
+<!--    <mvc:view-controller path="index.html" view-name="frame/index"/>-->
     <mvc:view-controller path="main" view-name="frame/main"/>
 
     <!--静态资源访问-->

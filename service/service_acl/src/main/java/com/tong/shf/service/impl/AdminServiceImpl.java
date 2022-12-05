@@ -28,4 +28,8 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
         return adminMapper;
     }
 
+    @Override
+    public Admin getByUsername(String username) {
+        return adminMapper.getByUsername(username);
+    }
 }

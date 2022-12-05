@@ -2,19 +2,18 @@ package com.tong.shf.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.tong.shf.entity.Role;
+import com.tong.shf.service.PermissionService;
+import com.tong.shf.service.RolePermissionService;
 import com.tong.shf.service.RoleService;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * title:
@@ -29,6 +28,10 @@ import java.util.TreeMap;
 public class RoleController extends BaseController {
     @DubboReference
     private RoleService roleService;
+    @DubboReference
+    private PermissionService permissionService;
+    @DubboReference
+    private RolePermissionService rolePermissionService;
 
     /*@RequestMapping
     public String findAll(Map map) {
@@ -80,5 +83,20 @@ public class RoleController extends BaseController {
     public String delete(@PathVariable Integer id){
         roleService.delete(id);
         return "redirect:/role";
+    }
+    
+    @RequestMapping(value = "/assignShow/{roleId}")
+    public String assignShow(@PathVariable Long roleId,Map map){
+        List<Map<String, Object>> zNodes = permissionService.findZNodes(roleId);
+        map.put("roleId",roleId);
+        map.put("zNodes",zNodes);
+        return "role/assignShow";
+    }
+
+
+    @RequestMapping(value = "/assignPermission")
+    public String assignPermission(Long roleId,Long[] permissionIds){
+        rolePermissionService.insertRolePermission(roleId,permissionIds);
+        return "common/success";
     }
 }

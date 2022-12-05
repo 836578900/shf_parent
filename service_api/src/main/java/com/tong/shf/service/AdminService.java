@@ -11,5 +11,5 @@ import com.tong.shf.entity.Admin;
  * @create 2022-11-26 19:03
  */
 public interface AdminService extends BaseService<Admin> {
-
+    Admin getByUsername(String username);
 }

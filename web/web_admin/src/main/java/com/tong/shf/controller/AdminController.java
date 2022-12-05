@@ -2,7 +2,6 @@ package com.tong.shf.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.tong.shf.entity.Admin;
-import com.tong.shf.entity.AdminRole;
 import com.tong.shf.entity.Role;
 import com.tong.shf.service.AdminRoleService;
 import com.tong.shf.service.AdminService;
@@ -10,6 +9,7 @@ import com.tong.shf.service.RoleService;
 import com.tong.shf.util.QiniuUtil;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +40,8 @@ public class AdminController extends BaseController {
     private RoleService roleService;
     @DubboReference
     private AdminRoleService adminRoleService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @RequestMapping
     public String findPage(HttpServletRequest request, Map map){
@@ -57,6 +59,7 @@ public class AdminController extends BaseController {
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(Admin admin){
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         adminService.insert(admin);
         return "common/success";
     }
